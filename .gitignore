@@ -31,5 +31,6 @@ proguard_logs/
 *.ipr
 *.iws
 .idea/
+.DS_Store
 
 adt-bundle-windows-x86_64/
