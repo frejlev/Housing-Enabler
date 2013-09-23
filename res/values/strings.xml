@@ -3,6 +3,12 @@
 
     <string name="app_name">Housing Enabler</string>
     <string name="action_settings">Settings</string>
-    <string name="made_by">Made by Rasmus and Andreas</string>
+    
+    <!-- Login page -->
+    <string name="username">Brugernavn</string>
+    <string name="password">********</string>
+    <string name="login">LOG IND</string>
+    <string name="loginBtn">LOG IND</string>
+    <string name="reset">TØM FORM</string>
 
 </resources>
