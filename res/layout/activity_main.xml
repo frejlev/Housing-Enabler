@@ -18,4 +18,14 @@
         android:layout_marginTop="67dp"
         android:text="@string/made_by" />
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="61dp"
+        android:text="TextView" />
+
 </RelativeLayout>
