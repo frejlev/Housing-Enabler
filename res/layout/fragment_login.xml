@@ -30,6 +30,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:hint="@string/username"
+        android:textColorHint="#EDEDED"
         android:layout_width="350dp"
         android:singleLine="true" >
     </EditText>
@@ -48,6 +49,7 @@
        	android:layout_width="350dp"
         android:ems="30"
         android:hint="@string/password"
+        android:textColorHint="#EDEDED"
         android:inputType="textPassword"
         android:singleLine="true" />
 	</LinearLayout>
