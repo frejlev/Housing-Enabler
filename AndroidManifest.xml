@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ucn.datamatiker.afr_rmlp.housingenabler"
     android:versionCode="1"
-    android:versionName="0.9 Beta"
-    android:installLocation="preferExternal">
+    android:versionName="0.9 Beta" >
 
     <uses-sdk
         android:minSdkVersion="11"
