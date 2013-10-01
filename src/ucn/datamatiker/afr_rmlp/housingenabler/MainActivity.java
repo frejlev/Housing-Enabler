@@ -3,6 +3,9 @@ package ucn.datamatiker.afr_rmlp.housingenabler;
 // Import Statements
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 
 public class MainActivity extends Activity {
@@ -11,6 +14,10 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		//FragmentManager fragmentManager = getFragmentManager();
+		//FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+		//fragmentTransaction.commit();
 	}
 
 	@Override
@@ -19,5 +26,4 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
 }
