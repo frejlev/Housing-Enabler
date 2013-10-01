@@ -3,12 +3,14 @@
 
     <string name="app_name">Housing Enabler</string>
     <string name="action_settings">Settings</string>
-    
+
     <!-- Login page -->
     <string name="username">Brugernavn</string>
     <string name="password">********</string>
     <string name="login">LOG IND</string>
     <string name="loginBtn">LOG IND</string>
     <string name="reset">TØM FORM</string>
+    <string name="title_activity_main_menu">Main Menu</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

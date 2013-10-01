@@ -5,6 +5,7 @@ import ucn.datamatiker.afr_rmlp.housingenabler.datasources.UsersDataSource;
 import ucn.datamatiker.afr_rmlp.housingenabler.models.User;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -51,10 +52,16 @@ public class MainActivity extends Activity {
 		
 		if (userDataSource.checkLogin(user)) {
 			testing.setText("Correct login");
+			gotoMainMenu();
 		} else {
 			testing.setText("Login faild");
 		}
 		
+	}
+	
+	public void gotoMainMenu() {
+		Intent intent = new Intent(this, MainMenu.class);
+		startActivity(intent);
 	}
 
 	@Override
