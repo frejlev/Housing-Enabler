@@ -14,7 +14,27 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String TABLE_USERS = "users";
 	public static final String COLUMN_USERNAME = "username";
 	public static final String COLUMN_PASSWORD = "password";
+	
+	// Client table
+	public static final String TABLE_CLIENTS = "clients";
+	public static final String COLUMN_P_NAME = "p_name";
+	public static final String COLUMN_P_A = "p_A";
+	public static final String COLUMN_P_B1 = "p_B1";
+	public static final String COLUMN_P_B2 = "p_B2";
+	public static final String COLUMN_P_C = "p_C";
+	public static final String COLUMN_P_D = "p_D";
+	public static final String COLUMN_P_E = "p_E";
+	public static final String COLUMN_P_F = "p_F";
+	public static final String COLUMN_P_G = "p_G";
+	public static final String COLUMN_P_H = "p_H";
+	public static final String COLUMN_P_I = "p_I";
+	public static final String COLUMN_P_J = "p_J";
+	public static final String COLUMN_P_K = "p_K";
+	public static final String COLUMN_P_L = "p_L";
+	public static final String COLUMN_P_M = "p_M";
+	
 
+	// Database info
 	private static final String DATABASE_NAME = "housingenabler.db";
 	private static final int DATABASE_VERSION = 1;
 

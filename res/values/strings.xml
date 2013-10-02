@@ -10,7 +10,16 @@
     <string name="login">LOG IND</string>
     <string name="loginBtn">LOG IND</string>
     <string name="reset">TØM FORM</string>
-    <string name="title_activity_main_menu">Main Menu</string>
+    <string name="title_activity_main_menu">Hovedmenu</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_fragment_main_menu">FragmentMainMenu</string>
+
+    <!-- Main Menu -->
+    <string name="opt1">Find og Ret Boligvurdering</string>
+    <string name="opt2">Find og Ret Persona</string>
+    <string name="opt3">Opret Klient</string>
+    <string name="opt4">Opret Boligvurdering</string>
+    <string name="title_activity_housing_enabler_test">Boligvurdering</string>
+    <string name="title_activity_create_client">Opret Persona</string>
 
 </resources>

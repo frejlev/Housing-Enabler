@@ -1,13 +1,13 @@
 package ucn.datamatiker.afr_rmlp.housingenabler;
 
-import java.util.ArrayList;
-
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.ListView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+
 
 public class MainMenu extends Activity {
 
@@ -16,29 +16,67 @@ public class MainMenu extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
 		
-		ListView listMenu = (ListView)findViewById(R.id.listMenu);
+		// Add event listener to op1 btn
+		Button opt1Btn = (Button)findViewById(R.id.btn1main);
+		opt1Btn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(final View v) {
+				// TODO Auto-generated method stub
+				// Method Call Here
+			}
+		});
 		
-		LayoutParams lp = (LayoutParams)listMenu.getLayoutParams();
+		 
+		// Add event listener to op2 btn
+		Button opt2Btn = (Button)findViewById(R.id.btn2main);
+		opt2Btn.setOnClickListener(new OnClickListener() {
+					
+			@Override
+			public void onClick(final View v) {
+				// TODO Auto-generated method stub
+				// Method Call Here
+			}
+		});
+	
 		
-		final ArrayList<String> menuItems = new ArrayList<String>();
-		final ArrayAdapter<String> aa = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menuItems);
-		listMenu.setAdapter(aa);
+		// Add event listener to op3 btn
+		Button opt3Btn = (Button)findViewById(R.id.btn3main);
+		opt3Btn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(final View v) {
+				gotoCreateClient();
+			}
+		});
 		
-		menuItems.add("Opret ny sag");
-		menuItems.add("Opret ny klient");
-		menuItems.add("S¿g i sager");
-		menuItems.add("S¿g i klienter");
-		menuItems.add("Ikke f¾rdiggjorde sager");
-		
-		aa.notifyDataSetChanged();
-		
+		Button opt4Btn = (Button)findViewById(R.id.btn4main);
+		opt4Btn.setOnClickListener(new OnClickListener() {
+			
+            @Override
+            public void onClick(final View v) {
+            	gotoTest();
+            }
+        });
+
 	}
 
+	
+	// Add event listener to op4 btn
+	public void gotoTest() {
+		Intent intent = new Intent(this, HousingEnablerTest.class);
+		startActivity(intent);
+	}
+	
+	public void gotoCreateClient() {
+		Intent intent = new Intent(this, CreateClient.class);
+		startActivity(intent);
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main_menu, menu);
 		return true;
 	}
-
 }

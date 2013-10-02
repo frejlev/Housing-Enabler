@@ -28,6 +28,18 @@
             android:name="ucn.datamatiker.afr_rmlp.housingenabler.MainMenu"
             android:label="@string/title_activity_main_menu" >
         </activity>
+        <activity
+            android:name="ucn.datamatiker.afr_rmlp.housingenabler.FragmentMainMenu"
+            android:label="@string/title_activity_fragment_main_menu" >
+        </activity>
+        <activity
+            android:name="ucn.datamatiker.afr_rmlp.housingenabler.HousingEnablerTest"
+            android:label="@string/title_activity_housing_enabler_test" >
+        </activity>
+        <activity
+            android:name="ucn.datamatiker.afr_rmlp.housingenabler.CreateClient"
+            android:label="@string/title_activity_create_client" >
+        </activity>
     </application>
 
 </manifest>
