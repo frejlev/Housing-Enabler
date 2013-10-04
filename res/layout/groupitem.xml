@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+ 
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        
+        android:paddingTop="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="40dp"
+        
+        android:textSize="20sp"
+       	android:lineSpacingMultiplier="1.1"
+       
+        android:layout_marginTop="1dp"
+        android:background="@color/transparent_white_hex_3"
+        />
+    
+</LinearLayout>
