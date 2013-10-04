@@ -15,7 +15,7 @@
     <string name="title_activity_fragment_main_menu">FragmentMainMenu</string>
 
     <!-- Main Menu -->
-    <string name="opt1">Find og Ret Boligvurdering</string>
+    <string name="opt1"><![CDATA[<big>Something heren</big><br/><small><font color="#ffffff">Something there</font></small>]]></string>
     <string name="opt2">Find og Ret Persona</string>
     <string name="opt3">Opret Klient</string>
     <string name="opt4">Opret Boligvurdering</string>

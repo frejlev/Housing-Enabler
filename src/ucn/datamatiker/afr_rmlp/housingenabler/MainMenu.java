@@ -3,6 +3,7 @@ package ucn.datamatiker.afr_rmlp.housingenabler;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,6 +19,7 @@ public class MainMenu extends Activity {
 		
 		// Add event listener to op1 btn
 		Button opt1Btn = (Button)findViewById(R.id.btn1main);
+		opt1Btn.setText(Html.fromHtml(getString(R.string.opt1)));
 		opt1Btn.setOnClickListener(new OnClickListener() {
 			
 			@Override
