@@ -49,6 +49,19 @@ public class CalculationHelper {
 		};
 	}
 	
+	public ArrayList<String> getQuestionKeys() {
+		
+		ArrayList<String> allKeys = new ArrayList<String>();
+		
+		int index = 0;
+		while (questionKeys.length > index) {
+			allKeys.add(questionKeys[index]);
+			index++;
+		}
+		
+		return allKeys;
+	}
+	
 	public ArrayList<String> getAllQuestions() {
 		
 		ArrayList<String> allQuestions = new ArrayList<String>();

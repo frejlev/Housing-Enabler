@@ -7,6 +7,7 @@ import ucn.datamatiker.afr_rmlp.housingenabler.R;
  
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.ArrayList;
  
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
  
@@ -24,13 +26,33 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<String> questions;
  
     public ExpandableListAdapter(Activity context, List<String> questions,
-            Map<String, List<String>> laptopCollections) {
+            Map<String, List<String>> questionCollections) {
         this.context = context;
-        this.questionCollections = laptopCollections;
+        this.questionCollections = questionCollections;
         this.questions = questions;
     }
  
     public Object getChild(int groupPosition, int childPosition) {
+        return questionCollections.get(questions.get(groupPosition)).get(childPosition);
+    }
+    
+    public Object setChild(int groupPosition, int childPosition) {
+    	
+    	int  counter = 0;
+    	for (Object itemString : questionCollections.get(questions.get(groupPosition))) {
+
+    		String newString = itemString.toString();
+    		newString = newString.replace("(Valgt)", "");
+    		
+    		questionCollections.get(questions.get(groupPosition)).set(counter, newString);
+    		
+    		counter++;
+    		
+    	}
+    	
+        String value = (String)questionCollections.get(questions.get(groupPosition)).get(childPosition);
+        questionCollections.get(questions.get(groupPosition)).set(childPosition, value + " (Valgt)");
+        
         return questionCollections.get(questions.get(groupPosition)).get(childPosition);
     }
  
@@ -40,7 +62,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
  
     public View getChildView(final int groupPosition, final int childPosition,
             boolean isLastChild, View convertView, ViewGroup parent) {
-        final String question = (String) getChild(groupPosition, childPosition);
+        final String options = (String) getChild(groupPosition, childPosition);
         LayoutInflater inflater = context.getLayoutInflater();
  
         if (convertView == null) {
@@ -48,10 +70,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView item = (TextView) convertView.findViewById(R.id.question);
- 
-        Log.d("Expand", question);
- 
-        item.setText(question);
+        
+        item.setText(options);
+        convertView.setId(groupPosition + childPosition);
         return convertView;
     }
  

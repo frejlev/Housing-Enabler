@@ -1,7 +1,10 @@
 package ucn.datamatiker.afr_rmlp.housingenabler;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
@@ -52,12 +55,40 @@ public class MainMenu extends Activity {
 			}
 		});
 		
-		Button opt4Btn = (Button)findViewById(R.id.btn4main);
+		final Button opt4Btn = (Button)findViewById(R.id.btn4main);
 		opt4Btn.setOnClickListener(new OnClickListener() {
 			
             @Override
             public void onClick(final View v) {
-            	gotoTest();
+            	
+            	DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            	    @Override
+            	    public void onClick(DialogInterface dialog, int which) {
+            	        switch (which){
+            	        case DialogInterface.BUTTON_POSITIVE:
+            	            
+            	        	SharedPreferences mPrefs = getSharedPreferences("appPrefs", Activity.MODE_PRIVATE);
+                    		SharedPreferences.Editor ed = mPrefs.edit();
+                    		
+                    		ed.clear();
+                    		ed.commit();
+            	        	
+                    		gotoTest();
+            	            break;
+
+            	        case DialogInterface.BUTTON_NEGATIVE:
+            	        	
+            	        	gotoTest();
+            	            break;
+            	            
+            	        }
+            	    }
+            	};
+            	
+            	AlertDialog.Builder builder = new AlertDialog.Builder(MainMenu.this);
+            	builder.setMessage("Ønsker du at oprette en ny boligvurdering, eller at arbejde videre på den seneste?").setPositiveButton("Opret ny boligvurdering", dialogClickListener)
+            	    .setNegativeButton("Arbejd videre", dialogClickListener).show();
+            	
             }
         });
 

@@ -1,11 +1,14 @@
 package ucn.datamatiker.afr_rmlp.housingenabler;
 
+import ucn.datamatiker.afr_rmlp.housingenabler.helpers.CalculationHelper;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
+	
+	CalculationHelper calcHelp = new CalculationHelper(null);
 	
 	// Reuse columns
 	public static final String COLUMN_ID = "_id";
@@ -16,7 +19,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_PASSWORD = "password";
 	
 	// Client table
-	public static final String TABLE_CLIENTS = "clients";
+	/**public static final String TABLE_CLIENTS = "clients";
 	public static final String COLUMN_P_NAME = "p_name";
 	public static final String COLUMN_P_A = "p_A";
 	public static final String COLUMN_P_B1 = "p_B1";
@@ -31,12 +34,15 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_P_J = "p_J";
 	public static final String COLUMN_P_K = "p_K";
 	public static final String COLUMN_P_L = "p_L";
-	public static final String COLUMN_P_M = "p_M";
+	public static final String COLUMN_P_M = "p_M";*/
 	
-
+	// Result table
+	public static final String TABLE_RESULTS = "results";
+	
+	
 	// Database info
 	private static final String DATABASE_NAME = "housingenabler.db";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 5;
 
 	// Database creation sql statement	
 	private static final String CREATE_TABLE_USERS = 
@@ -47,6 +53,23 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	      + COLUMN_PASSWORD + " text not null, " 
 	      + "UNIQUE(" + COLUMN_USERNAME + ") ON CONFLICT REPLACE);";
 	
+	private String CREATE_TABLE_RESULTS = "";
+	
+	
+	private void addColumnsToResultTable() {
+	
+		CREATE_TABLE_RESULTS += "create table " + TABLE_RESULTS + "(";
+		
+		for (String s : calcHelp.getQuestionKeys()) {
+			CREATE_TABLE_RESULTS += s + " INTEGER DEFAULT 0, ";
+		}
+		
+		CREATE_TABLE_RESULTS += COLUMN_ID + " integer primary key autoincrement";
+		
+		CREATE_TABLE_RESULTS += ");";
+		
+	}
+	
 	public MySQLiteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -54,8 +77,18 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		try {
+			
+			db.execSQL("DROP TABLE IF EXISTS "+TABLE_USERS+";");
+			db.execSQL("DROP TABLE IF EXISTS "+TABLE_RESULTS+";");
+			
 			db.execSQL(CREATE_TABLE_USERS);
 			db.execSQL("INSERT INTO " + TABLE_USERS + "(" + COLUMN_USERNAME + ", " + COLUMN_PASSWORD + ") VALUES('afr', '123456')");
+			
+			addColumnsToResultTable();
+			
+			Log.d("MySQLite helper", CREATE_TABLE_RESULTS);
+			
+			db.execSQL(CREATE_TABLE_RESULTS);
 		} catch(Exception e) {
 			System.out.println("Creating of db tables: " + e.getMessage());
 		}
