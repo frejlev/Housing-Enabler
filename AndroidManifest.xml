@@ -41,6 +41,10 @@
             android:name="ucn.datamatiker.afr_rmlp.housingenabler.CreateClient"
             android:label="@string/title_activity_create_client" >
         </activity>
+        <activity
+            android:name="ucn.datamatiker.afr_rmlp.housingenabler.Search"
+            android:label="@string/title_activity_search" >
+        </activity>
     </application>
 
 </manifest>

@@ -27,35 +27,15 @@ public class MainMenu extends Activity {
 			
 			@Override
 			public void onClick(final View v) {
-				// TODO Auto-generated method stub
-				// Method Call Here
+				
+				gotoSearch();
+				
 			}
 		});
 		
-		 
-		// Add event listener to op2 btn
-		Button opt2Btn = (Button)findViewById(R.id.btn2main);
-		opt2Btn.setOnClickListener(new OnClickListener() {
-					
-			@Override
-			public void onClick(final View v) {
-				// TODO Auto-generated method stub
-				// Method Call Here
-			}
-		});
-	
-		
-		// Add event listener to op3 btn
-		Button opt3Btn = (Button)findViewById(R.id.btn3main);
-		opt3Btn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(final View v) {
-				gotoCreateClient();
-			}
-		});
 		
 		final Button opt4Btn = (Button)findViewById(R.id.btn4main);
+		opt4Btn.setText(Html.fromHtml(getString(R.string.opt4)));
 		opt4Btn.setOnClickListener(new OnClickListener() {
 			
             @Override
@@ -95,16 +75,18 @@ public class MainMenu extends Activity {
 	}
 
 	
+	// Add event listener to op1 btn
+	private void gotoSearch() {
+		Intent intent = new Intent(this, Search.class);
+		startActivity(intent);
+	}
+	
 	// Add event listener to op4 btn
-	public void gotoTest() {
+	private void gotoTest() {
 		Intent intent = new Intent(this, HousingEnablerTest.class);
 		startActivity(intent);
 	}
 	
-	public void gotoCreateClient() {
-		Intent intent = new Intent(this, CreateClient.class);
-		startActivity(intent);
-	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ucn.datamatiker.afr_rmlp.housingenabler.helpers.CalculationHelper;
+import ucn.datamatiker.afr_rmlp.housingenabler.helpers.MySQLiteHelper;
+import ucn.datamatiker.afr_rmlp.housingenabler.models.Result;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import ucn.datamatiker.afr_rmlp.housingenabler.MySQLiteHelper;
 
 public class ResultDataSource {
 
@@ -21,6 +22,14 @@ public class ResultDataSource {
 	private CalculationHelper calcHelp;
 	
 	private ArrayList<String> allColumns;
+	private String[] caseResultColumns = new String[] {
+			MySQLiteHelper.COLUMN_ID,
+			MySQLiteHelper.COLUMN_CASE_NAME,
+			MySQLiteHelper.COLUMN_CASE_DATE,
+			MySQLiteHelper.COLUMN_CASE_ADDRESS,
+			MySQLiteHelper.COLUMN_CASE_CITY,
+			MySQLiteHelper.COLUMN_CASE_ZIPCODE
+	};
 
 	public ResultDataSource(Context context) {
 		dbHelper = new MySQLiteHelper(context);
@@ -78,24 +87,25 @@ public class ResultDataSource {
 	    return newResult;
 	}
 	
+	public long createCaseInfo(long idResult, String caseName, String date, String address, String city, String zipcode) {
+		
+		ContentValues values = new ContentValues();
+	    values.put(caseResultColumns[0], idResult);
+	    values.put(caseResultColumns[1], caseName);
+	    values.put(caseResultColumns[2], date);
+	    values.put(caseResultColumns[3], address);
+	    values.put(caseResultColumns[4], city);
+	    values.put(caseResultColumns[5], zipcode);
+	    
+	    long id = database.insert(MySQLiteHelper.TABLE_CASEINFO, null,
+		        values);
+		
+		return id;
+	}
+	
 	public ArrayList<Integer> updateResult(int id, String column, int theValue) {
 
 	    ArrayList<Integer> newResult = new ArrayList<Integer>();
-	    
-	    int tableValue = 0;
-	    
-	    /**try {
-	    	
-	    	Cursor cursor = database.query(MySQLiteHelper.TABLE_RESULTS, new String[] { column }, "_id =" + id, null, null, null, null);
-	    	if (cursor != null) {
-	    		cursor.moveToFirst();
-	    	}
-	    	
-	    	tableValue = cursor.getInt(0);
-	    	
-	    } catch (Exception e) {
-	    	Log.d("ResultDataSource", e.getMessage());
-	    }*/
 	    
 	    try {
 	    	
@@ -144,48 +154,28 @@ public class ResultDataSource {
 		
 		return newResult;
 	}
-
-	/**
-	public void deleteUser(User user) {
-	    long id = user.getId();
-	    System.out.println("User deleted with id: " + id);
-	    database.delete(MySQLiteHelper.TABLE_USERS, MySQLiteHelper.COLUMN_ID
-	        + " = " + id, null);
-	}
-	  
-	public Boolean checkLogin(User user) {
-		
-		Log.d("UserDataSource", "Got into the check method...");
-		
-		Cursor cursor = database.query(MySQLiteHelper.TABLE_USERS, 
-				  		allColumns, 
-				  		MySQLiteHelper.COLUMN_USERNAME + " = ? AND " + MySQLiteHelper.COLUMN_PASSWORD + " = ?", 
-				  		new String[] { user.getUsername(), user.getPassword() }, 
-		null, null, null);
-		
-		if (cursor != null && cursor.getCount() > 0) return true;
-		
-		return false;
-	}
-
 	
-	  public List<User> getAllUsers() {
-	    List<User> users = new ArrayList<User>();
-
-	    Cursor cursor = database.query(MySQLiteHelper.TABLE_USERS,
-	        allColumns, null, null, null, null, null);
-
+	public List<Result> searchCaseInfo(String casename) {
+		
+		List<Result> newResult = new ArrayList<Result>();	
+	    
+	    Cursor cursor = database.query(MySQLiteHelper.TABLE_CASEINFO,
+	        caseResultColumns, MySQLiteHelper.COLUMN_CASE_NAME + " LIKE " + "'%" + casename + "%'", null,
+	        null, null, null);
+	    
 	    cursor.moveToFirst();
+	    
 	    while (!cursor.isAfterLast()) {
-	      User user = cursorToUser(cursor);
-	      users.add(user);
-	      cursor.moveToNext();
+		      Result result = cursorToResultObject(cursor);
+		      newResult.add(result);
+		      cursor.moveToNext();
 	    }
-	    // Make sure to close the cursor
+	    
 	    cursor.close();
-	    return users;
-	  }
-	  */
+		
+		return newResult;
+	}
+
 
 	  private ArrayList<Integer> cursorToResult(Cursor cursor) {
 	    ArrayList<Integer> result = new ArrayList<Integer>();
@@ -200,4 +190,20 @@ public class ResultDataSource {
 
 	    return result;
 	  }
+	  
+	  	private Result cursorToResultObject(Cursor cursor) {
+
+	  		Result result = new Result(
+	  				cursor.getInt(0),
+	  				cursor.getString(1),
+	  				cursor.getString(2),
+	  				cursor.getString(3),
+	  				cursor.getString(4),
+	  				cursor.getString(5)
+	  		);
+	  		
+		    return result;
+		    
+	  	}
+	  
 	} 

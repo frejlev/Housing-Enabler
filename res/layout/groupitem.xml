@@ -17,6 +17,7 @@
         
         android:textSize="20sp"
        	android:lineSpacingMultiplier="1.1"
+       	android:textStyle="normal"
        
         android:layout_marginTop="1dp"
         android:background="@color/transparent_white_hex_3"

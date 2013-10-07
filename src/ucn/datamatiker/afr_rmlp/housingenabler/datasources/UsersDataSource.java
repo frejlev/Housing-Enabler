@@ -3,6 +3,7 @@ package ucn.datamatiker.afr_rmlp.housingenabler.datasources;
 import java.util.ArrayList;
 import java.util.List;
 
+import ucn.datamatiker.afr_rmlp.housingenabler.helpers.MySQLiteHelper;
 import ucn.datamatiker.afr_rmlp.housingenabler.models.User;
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,7 +11,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import ucn.datamatiker.afr_rmlp.housingenabler.MySQLiteHelper;
 
 public class UsersDataSource {
 
