@@ -129,7 +129,7 @@ public class HousingEnablerTest extends Activity {
                 	theValue = 3; // Not selected
                 }
                 
-                resultDataSource.updateResult(idToUpdate, columnToUpdate, theValue);
+                resultArray = resultDataSource.updateResult(idToUpdate, columnToUpdate, theValue);
                 
                // Log.d("something", String.valueOf(((ViewGroup)v).getChildCount()));
                 
@@ -232,6 +232,26 @@ public class HousingEnablerTest extends Activity {
                 R.layout.drawer_list_item, resultList));
 		
 		Integer[] total = calHelp.generateTotal(testUser, resultArray);
+		
+		
+		int testuserLength = testUser.length;
+		int totalLength = total.length;
+		ArrayList<Integer> testUserArrayList = new ArrayList<Integer>();
+		ArrayList<Integer> totalArrayList = new ArrayList<Integer>();
+		
+		for (int i = 0; i < testuserLength; i++) {
+			testUserArrayList.add(testUser[i]);
+		}
+		
+		for (int i = 0; i < totalLength; i++) {
+			totalArrayList.add(total[i]);
+		}
+		
+		
+		Log.d("After calc", testUserArrayList.toString());
+		Log.d("After calc", resultArray.toString());
+		Log.d("After calc", totalArrayList.toString());
+		
 		Integer superTotal = 0;
 		
 		int index = 0;
@@ -245,6 +265,8 @@ public class HousingEnablerTest extends Activity {
         resultList[1] = "DEL SCORE 1: ";
         resultList[2] = "DEL SCORE 2: ";
         resultList[3] = "DEL SCORE 3: ";
+        
+        Toast.makeText(getBaseContext(), "Resultatet blev opdateret til: " + superTotal, Toast.LENGTH_SHORT).show();
 
 	}
 	
